@@ -169,32 +169,33 @@
   }
   .card-cta:hover { color: var(--sage); }
 
-  /* ROW CARDS */
+  /* CLASSROOM CARDS — Version 1 update: align with the top grid-card style */
   .grid-rows {
-    display: grid; grid-template-columns: 1fr;
-    gap: 12px; margin-bottom: 48px;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px; margin-bottom: 48px;
   }
   .card-row {
-    display: grid; grid-template-columns: 180px 1fr;
+    display: flex; flex-direction: column;
     border-radius: 14px; overflow: hidden;
     border: 1px solid var(--border); background: var(--white);
     transition: box-shadow .2s;
+    min-width: 0;
   }
   .card-row:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); }
   .card-row-img {
-    width: 180px; height: 100%; min-height: 130px; overflow: hidden;
+    width: 100%; aspect-ratio: 4/3; min-height: 0; overflow: hidden;
   }
-  .card-row-img img { width:100%; height:100%; object-fit:cover; }
+  .card-row-img img { width:100%; height:100%; object-fit:contain; padding:4px; }
   .card-row-body {
-    padding: 14px 16px; display: flex; flex-direction: column;
-    justify-content: center; gap: 4px; min-width: 0; overflow: hidden;
+    padding: 14px 16px 16px; display: flex; flex-direction: column;
+    justify-content: flex-start; gap: 5px; min-width: 0; overflow: hidden;
   }
-  .card-row-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 2px; }
+  .card-row-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 3px; }
   .card-row-title {
-    font-size: .85rem; font-weight: 700; color: var(--ink); line-height: 1.3; word-break: break-word;
+    font-size: .85rem; font-weight: 700; color: var(--ink); line-height: 1.35; word-break: break-word;
   }
   .card-row-meta {
-    font-size: .72rem; color: var(--ink-lt); display: flex; gap: 10px;
+    font-size: .72rem; color: var(--ink-lt); display: flex; flex-wrap: wrap; gap: 8px;
   }
   .card-row-meta span { display: flex; align-items: center; gap: 4px; }
   .card-row-meta span::before {
@@ -214,33 +215,59 @@
   .tag-online   { background: var(--apricot-lt); color: #7A4A20; }
   .tag-approach { background: var(--blush-lt); color: #7A3A36; }
 
-  @media(max-width: 600px) {
-    body { padding: 0 16px 32px; }
+  @media(max-width: 780px) {
+    .grid-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
 
-    
+  @media(max-width: 600px) {
+    body { padding: 0 18px 36px; }
+
+    .nav-email { font-size: .82rem; }
 
     .header { grid-template-columns: 1fr; }
     .header-deco { display: none; }
-    .name { font-size: 2rem; }
+    .name { font-size: 2.35rem; }
+    .name-sub { font-size: .8rem; }
+    .tagline { font-size: 1.22rem; line-height: 1.35; }
 
-    .grid-3x1 { grid-template-columns: 1fr; }
+    .bio { padding: 20px 20px; margin-bottom: 36px; }
+    .bio li { font-size: .9rem; line-height: 1.65; }
 
-    .card-row { grid-template-columns: 120px 1fr; }
-    .card-row-img { width: 120px; min-height: 100px; }
-    .card-row-title { font-size: .80rem; }
-    .card-row-desc { font-size: .68rem; }
+    .grid-3x1,
+    .grid-rows { grid-template-columns: 1fr; }
 
-    .section-label { font-size: .58rem; }
+    .card-body,
+    .card-row-body { padding: 16px 18px 18px; }
+    .card-type,
+    .tag-sm { font-size: .66rem; padding: 4px 10px; }
+    .card-title-lg { font-size: 1.15rem; }
+    .card-subtitle { font-size: .92rem; }
+    .card-desc-sm,
+    .card-row-desc { font-size: .86rem; line-height: 1.65; }
+    .card-cta { font-size: .82rem; }
+    .card-row-title { font-size: .96rem; }
+    .card-row-meta { font-size: .82rem; row-gap: 4px; }
+
+    .section-label { font-size: .68rem; line-height: 1.4; letter-spacing: .14em; }
 
     /* Beyond the Classroom */
-    .beyond-inner { flex-direction: column !important; }
-    .beyond-books { flex-direction: column !important; }
+    .beyond-inner { flex-direction: column !important; align-items: flex-start !important; }
+    .beyond-books { flex-direction: column !important; align-items: center !important; }
+    .beyond-books img {
+      width: 100% !important;
+      max-width: 320px;
+      min-width: 0 !important;
+      flex: 0 1 auto !important;
+      height: auto !important;
+    }
+    .beyond-inner p { font-size: .88rem !important; line-height: 1.65 !important; }
   }
 
   @media(max-width: 400px) {
-    .card-row { grid-template-columns: 100px 1fr; }
-    .card-row-img { width: 100px; }
-    .tag-sm { font-size: .52rem; padding: 2px 7px; }
+    body { padding-left: 16px; padding-right: 16px; }
+    .name { font-size: 2.15rem; }
+    .tag-sm { font-size: .62rem; padding: 3px 8px; }
+    .card-type { font-size: .62rem; }
   }
 </style>
 </head>
